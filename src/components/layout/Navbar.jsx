@@ -3,7 +3,18 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 function Navbar() {
-    let { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+
+    let { isAuthenticated, setIsAuthenticated, setUserData } = useContext(AuthContext);
+
+    function handleLogout() {
+
+        localStorage.removeItem('token');
+        localStorage.removeItem('userData');
+
+        setIsAuthenticated(false);
+        setUserData(null);
+
+    }
 
     return (
         <nav>
@@ -11,7 +22,7 @@ function Navbar() {
                 <>
                     <NavLink style={{ padding: "20px" }} to="/dashboard">Dashboard</NavLink>
                     <NavLink style={{ padding: "20px" }} to="/profile">Profile</NavLink>
-                    <button>logout</button>
+                    <button onClick={handleLogout}>logout</button>
                 </>
                 :
                 <>

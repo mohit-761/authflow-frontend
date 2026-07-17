@@ -79,7 +79,9 @@ function Login() {
 
         // reset errors
         let tempErrorObj = { ...formErrors };
+
         delete tempErrorObj[name];
+        
         setFormErrors({ ...tempErrorObj });
 
     }

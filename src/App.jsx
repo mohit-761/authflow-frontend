@@ -5,17 +5,62 @@ import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Profile from './pages/Profile';
 import Navbar from './components/layout/Navbar';
+import ProtectedRoute from './routes/ProtectedRoute';
+import PublicRoute from './routes/PublicRoute';
+import EditProfile from './pages/EditProfile';
+import EditProfilePhoto from './pages/EditProfilePhoto';
+import EditPassword from './pages/EditPassword';
 
 
 function App() {
   return <BrowserRouter>
     <Navbar />
     <Routes>
-      <Route path='/' element={<Login />} />
-      <Route path='/register' element={<Register />} />
-      <Route path='/dashboard' element={<Dashboard />} />
-      <Route path='/profile' element={<Profile />} />
-      <Route path='*' element={<NotFound />} />
+
+      <Route path='/' element={
+        <PublicRoute>
+          <Login />
+        </PublicRoute>
+      } />
+
+      <Route path='/register' element={
+        <PublicRoute>
+          <Register />
+        </PublicRoute>} />
+
+      <Route path='/dashboard' element={
+        <ProtectedRoute>
+          <Dashboard />
+        </ProtectedRoute>
+      } />
+
+      <Route path='/profile' element={
+        <ProtectedRoute>
+          <Profile />
+        </ProtectedRoute>
+      } />
+
+      <Route path='/profile/edit' element={
+        <ProtectedRoute>
+          <EditProfile/>
+        </ProtectedRoute>
+      }/>
+
+       <Route path='/profile/edit-avatar' element={
+        <ProtectedRoute>
+          <EditProfilePhoto/>
+        </ProtectedRoute>
+      }/>
+
+      <Route path='/profile/edit-password' element={
+        <ProtectedRoute>
+           <EditPassword/>
+        </ProtectedRoute>
+      } />
+
+      
+      <Route path='*' element={<NotFound />}/>
+
     </Routes>
   </BrowserRouter>
 }
