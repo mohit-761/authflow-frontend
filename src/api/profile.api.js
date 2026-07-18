@@ -8,3 +8,13 @@ export async function getProfile() {
 export async function deleteProfile() {
     await axiosInstance.delete('/profile');
 }
+
+export async function updateProfile(data) {
+    let response = await axiosInstance.put('/profile', data);
+    return response.data;
+}
+
+export async function updateProfilePhoto(file) {
+    let response = await axiosInstance.put('/profile-photo', file)
+    return response.data;
+}

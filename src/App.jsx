@@ -9,7 +9,8 @@ import ProtectedRoute from './routes/ProtectedRoute';
 import PublicRoute from './routes/PublicRoute';
 import EditProfile from './pages/EditProfile';
 import EditProfilePhoto from './pages/EditProfilePhoto';
-import EditPassword from './pages/EditPassword';
+import EditPassword from './pages/ChangePassword';
+import ForgetPassword from './pages/ForgetPassword';
 
 
 function App() {
@@ -42,24 +43,30 @@ function App() {
 
       <Route path='/profile/edit' element={
         <ProtectedRoute>
-          <EditProfile/>
-        </ProtectedRoute>
-      }/>
-
-       <Route path='/profile/edit-avatar' element={
-        <ProtectedRoute>
-          <EditProfilePhoto/>
-        </ProtectedRoute>
-      }/>
-
-      <Route path='/profile/edit-password' element={
-        <ProtectedRoute>
-           <EditPassword/>
+          <EditProfile />
         </ProtectedRoute>
       } />
 
-      
-      <Route path='*' element={<NotFound />}/>
+      <Route path='/profile/edit-avatar' element={
+        <ProtectedRoute>
+          <EditProfilePhoto />
+        </ProtectedRoute>
+      } />
+
+      <Route path='/profile/change-password' element={
+        <ProtectedRoute>
+          <EditPassword />
+        </ProtectedRoute>
+      } />
+
+      <Route path='/profile/forget-password' element={
+        <PublicRoute>
+          <ForgetPassword />
+        </PublicRoute>
+      } />
+
+
+      <Route path='*' element={<NotFound />} />
 
     </Routes>
   </BrowserRouter>

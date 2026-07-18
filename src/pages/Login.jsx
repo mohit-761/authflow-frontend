@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { loginUser } from "../api/auth.api";
-import { Link, replace, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 function Login() {
@@ -101,7 +101,8 @@ function Login() {
                 </div>
                 <div>
                     <button>{isLoading ? 'Login...' : 'Login'}</button>
-                    <p>new to application please: <Link to='/register'>register</Link></p>
+                    <p>forget password: <NavLink to='/profile/forget-password'>forget-password</NavLink></p>
+                    <p>new to application please: <NavLink to='/register'>register</NavLink></p>
                 </div>
             </form>
         </div>

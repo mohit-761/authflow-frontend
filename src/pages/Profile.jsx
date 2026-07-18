@@ -84,7 +84,7 @@ function Profile() {
                         <NavLink to='/profile/edit'>edit profile details</NavLink>
                     </td>
                     <td>
-                        <NavLink to='/profile/edit-password'>edit password</NavLink>
+                        <NavLink to='/profile/change-password'>edit password</NavLink>
                     </td>
                 </tr>
             </tbody>
