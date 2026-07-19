@@ -10,6 +10,7 @@ function EditProfile() {
         name: '',
         email: '',
     });
+    let [fieldErrors, setFieldErrors] = useState({});
 
     useEffect(() => {
         if (userData) {
@@ -29,17 +30,30 @@ function EditProfile() {
             navigate('/profile', { replace: true })
         } catch (error) {
             let errorData = error?.response?.data;
-            let message = errorData.message || 'something went wrong please try again';
-            alert(message);
+            if (errorData.data) {
+                setFieldErrors(errorData.data);
+            } else {
+                let message = errorData.message || 'something went wrong please try again';
+                alert(message);
+            }
         }
     }
 
     function handleOnChange(e) {
+        
         let { name, value } = e.target;
+
         setFormFields((previous) => {
             return {
                 ...previous,
                 [name]: value,
+            }
+        });
+
+        setFieldErrors((previous) => {
+            return {
+                ...previous,
+                [name]: ''
             }
         })
     }
@@ -48,7 +62,9 @@ function EditProfile() {
         <h1>Edit Profile</h1>
         <form onSubmit={handleSubmit}>
             <input type='text' name='name' value={formFields.name} onChange={handleOnChange} autoComplete="off" />
+            <p>{fieldErrors.name}</p>
             <input type='email' name='email' value={formFields.email} onChange={handleOnChange} autoComplete="off" />
+            <p>{fieldErrors.email}</p>
             <button>submit</button>
         </form>
     </>

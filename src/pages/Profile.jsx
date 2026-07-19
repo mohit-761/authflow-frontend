@@ -18,7 +18,8 @@ function Profile() {
                 let response = await getProfile();
                 setUser(response.data);
             } catch (error) {
-                setError(error.message);
+                let errorData = error?.response?.data;
+                setError(errorData.message || 'something went wrong. please try again later');
             } finally {
                 setLoading(false);
             }
@@ -42,7 +43,8 @@ function Profile() {
                 localStorage.removeItem('userData');
 
             } catch (error) {
-                setError(error.message);
+                let errorData = error?.response?.data;
+                setError(errorData.message || 'something went wrong. please try again later');
             }
         }
     }
@@ -69,7 +71,16 @@ function Profile() {
             <tbody>
                 <tr>
                     <td>{user._id}</td>
-                    <td>{user.avatar || <img src="#" alt="user profile image" />}</td>
+                    <td>{
+                        user.avatar_url ? (
+                            <img src={user.avatar_url}
+                                alt='profile'
+                                width={100}
+                                height="auto"
+                            />) : (
+                            "No Profile Photo"
+                        )
+                    }</td>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
                 </tr>

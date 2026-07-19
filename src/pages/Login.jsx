@@ -81,7 +81,7 @@ function Login() {
         let tempErrorObj = { ...formErrors };
 
         delete tempErrorObj[name];
-        
+
         setFormErrors({ ...tempErrorObj });
 
     }
